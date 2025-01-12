@@ -17,13 +17,14 @@ def perform_kmeans(normalized_features, n_clusters=3):
     cluster_labels = kmeans.fit_predict(normalized_features)
     return cluster_labels
 
-def perform_elbow_analysis(normalized_features, max_clusters=10):
+def perform_elbow_analysis(normalized_features, max_clusters=10, output_path=None):
     """
     Perform the elbow analysis to determine the optimal number of clusters.
 
     Args:
         normalized_features (np.ndarray): The normalized dataset.
         max_clusters (int): The maximum number of clusters to evaluate.
+        output_path (str): Path to save the plot.
 
     Returns:
         None
@@ -40,7 +41,11 @@ def perform_elbow_analysis(normalized_features, max_clusters=10):
     plt.title("Elbow Method for Optimal Clusters")
     plt.xlabel("Number of Clusters")
     plt.ylabel("Inertia")
-    plt.show()
+    
+    if output_path:
+        plt.savefig(output_path)
+    else:
+        plt.show()
 
 def compute_silhouette_score(normalized_features, cluster_labels):
     """

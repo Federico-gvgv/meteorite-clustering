@@ -11,7 +11,7 @@ data = load_meteorite_data('data/meteorite_landings.csv')
 data, normalized_features = preprocess_meteorite_data(data)
 
 # Perform elbow analysis
-perform_elbow_analysis(normalized_features)
+perform_elbow_analysis(normalized_features, max_clusters=10, output_path='results/elbow_method.png')
 
 # Perform clustering
 cluster_labels = perform_kmeans(normalized_features, n_clusters=4)
@@ -20,7 +20,7 @@ cluster_labels = perform_kmeans(normalized_features, n_clusters=4)
 compute_silhouette_score(normalized_features, cluster_labels)
 
 # Visualize clusters
-visualize_clusters_pca(normalized_features, cluster_labels)
+visualize_clusters_pca(normalized_features, cluster_labels, output_path='results/meteorite_clusters_pca.png')
 
 # Visualize clusters with t-SNE
 visualize_clusters_tsne(normalized_features, cluster_labels, output_path='results/meteorite_clusters_tsne.png')

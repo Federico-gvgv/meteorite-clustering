@@ -10,7 +10,7 @@ def visualize_clusters_pca(normalized_features, cluster_labels, output_path=None
     Args:
         normalized_features (np.ndarray): Normalized dataset.
         cluster_labels (np.ndarray): Cluster labels.
-
+        output_path (str): Path to save the visualization.
     Returns:
         None
     """
@@ -20,14 +20,17 @@ def visualize_clusters_pca(normalized_features, cluster_labels, output_path=None
     
     # Create scatter plot
     plt.figure(figsize=(10, 6))
-    sns.scatterplot(
-        x=reduced_data[:, 0], y=reduced_data[:, 1], hue=cluster_labels, palette='tab10'
-    )
+    sns.scatterplot(x=reduced_data[:, 0], y=reduced_data[:, 1], hue=cluster_labels, palette='tab10')
     plt.title("Meteorite Landings Clustering")
     plt.xlabel("PCA Component 1")
     plt.ylabel("PCA Component 2")
     plt.legend(title="Cluster")
-    plt.show()
+
+    # Save the plot or show it
+    if output_path:
+        plt.savefig(output_path)
+    else:
+        plt.show()
 
 
 def visualize_clusters_tsne(normalized_features, cluster_labels, output_path=None):
